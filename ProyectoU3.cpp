@@ -261,3 +261,121 @@ void measureSortingTime(int arr[], int n, string algorithm) {
 
     cout << "Algoritmo: " << algorithm << ", Tiempo transcurrido: " << duration.count() << " ms" << endl;
 }
+int main() {
+    const int SIZE1 = 100000; // Tamaño máximo del conjunto de datos 1
+    const int SIZE2 = 70000; // Tamaño máximo del conjunto de datos 2
+    const int SIZE3 = 1000; // Tamaño máximo del conjunto de datos 3
+
+    // Conjunto de datos 1: Tablero de puntaje
+    int arr1[SIZE1];
+
+    cout << "Conjunto de datos 1: Tablero de puntaje" << endl;
+
+    // Modo ascendente
+    generateAscending(arr1, SIZE1);
+    cout << "Modo: Ascendente" << endl;
+    for (string algorithm : {"bubble", "heap", "quick", "merge", "selection", "insertion", "shell"}) {
+        measureSortingTime(arr1, SIZE1, algorithm);
+    }
+    cout << endl;
+
+    // Modo descendente
+    generateDescending(arr1, SIZE1);
+    cout << "Modo: Descendente" << endl;
+    for (string algorithm : {"bubble", "heap", "quick", "merge", "selection", "insertion", "shell"}) {
+        measureSortingTime(arr1, SIZE1, algorithm);
+    }
+    cout << endl;
+
+    // Modo aleatorio con números duplicados
+    generateRandomWithDuplicates(arr1, SIZE1);
+    cout << "Modo: Aleatorio con números duplicados" << endl;
+    for (string algorithm : {"bubble", "heap", "quick", "merge", "selection", "insertion", "shell"}) {
+        measureSortingTime(arr1, SIZE1, algorithm);
+    }
+    cout << endl;
+
+    // Modo aleatorio sin duplicados
+    generateRandomWithoutDuplicates(arr1, SIZE1);
+    cout << "Modo: Aleatorio sin duplicados" << endl;
+    for (string algorithm : {"bubble", "heap", "quick", "merge", "selection", "insertion", "shell"}) {
+        measureSortingTime(arr1, SIZE1, algorithm);
+    }
+    cout << endl;
+
+    // Conjunto de datos 2: Determinación de camino entre aldeas
+    int arr2[SIZE2];
+
+    cout << "Conjunto de datos 2: Determinación de camino entre aldeas" << endl;
+
+    // Modo ascendente
+    generateAscending(arr2, SIZE2);
+    cout << "Modo: Ascendente" << endl;
+    for (string algorithm : {"bubble", "heap", "quick", "merge", "selection", "insertion", "shell"}) {
+        measureSortingTime(arr2, SIZE2, algorithm);
+    }
+    cout << endl;
+
+    // Modo descendente
+    generateDescending(arr2, SIZE2);
+    cout << "Modo: Descendente" << endl;
+    for (string algorithm : {"bubble", "heap", "quick", "merge", "selection", "insertion", "shell"}) {
+        measureSortingTime(arr2, SIZE2, algorithm);
+    }
+    cout << endl;
+
+    // Modo aleatorio con números duplicados
+    generateRandomWithDuplicates(arr2, SIZE2);
+    cout << "Modo: Aleatorio con números duplicados" << endl;
+    for (string algorithm : {"bubble", "heap", "quick", "merge", "selection", "insertion", "shell"}) {
+        measureSortingTime(arr2, SIZE2, algorithm);
+    }
+    cout << endl;
+
+    // Modo aleatorio sin duplicados
+    generateRandomWithoutDuplicates(arr2, SIZE2);
+    cout << "Modo: Aleatorio sin duplicados" << endl;
+    for (string algorithm : {"bubble", "heap", "quick", "merge", "selection", "insertion", "shell"}) {
+        measureSortingTime(arr2, SIZE2, algorithm);
+    }
+    cout << endl;
+
+    // Conjunto de datos 3: Dibujo o renderizado de objetos
+    int arr3[SIZE3];
+
+    cout << "Conjunto de datos 3: Dibujo o renderizado de objetos" << endl;
+
+    // Modo ascendente
+    generateAscending(arr3, SIZE3);
+    cout << "Modo: Ascendente" << endl;
+    for (string algorithm : {"bubble", "heap", "quick", "merge", "selection", "insertion", "shell"}) {
+        measureSortingTime(arr3, SIZE3, algorithm);
+    }
+    cout << endl;
+
+    // Modo descendente
+    generateDescending(arr3, SIZE3);
+    cout << "Modo: Descendente" << endl;
+    for (string algorithm : {"bubble", "heap", "quick", "merge", "selection", "insertion", "shell"}) {
+        measureSortingTime(arr3, SIZE3, algorithm);
+    }
+    cout << endl;
+
+    // Modo aleatorio con números duplicados
+    generateRandomWithDuplicates(arr3, SIZE3);
+    cout << "Modo: Aleatorio con números duplicados" << endl;
+    for (string algorithm : {"bubble", "heap", "quick", "merge", "selection", "insertion", "shell"}) {
+        measureSortingTime(arr3, SIZE3, algorithm);
+    }
+    cout << endl;
+
+    // Modo aleatorio sin duplicados
+    generateRandomWithoutDuplicates(arr3, SIZE3);
+    cout << "Modo: Aleatorio sin duplicados" << endl;
+    for (string algorithm : {"bubble", "heap", "quick", "merge", "selection", "insertion", "shell"}) {
+        measureSortingTime(arr3, SIZE3, algorithm);
+    }
+    cout << endl;
+
+    return 0;
+}
