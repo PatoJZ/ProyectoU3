@@ -67,11 +67,26 @@ int main()
             size = min_size3 + rand() % (max_size3 - min_size3 + 1);
         }
         cout << "------------------------------------------------------------" << endl;
-        //cout << "Carrera " << race + 1 << ": Tamano de datos: " << size << endl;
+        // cout << "Carrera " << race + 1 << ": Tamano de datos: " << size << endl;
 
         for (int mode = 0; mode < numSortModes; ++mode)
         {
-            cout << "Carrera " << race + 1 << ": Modo ";
+            string carrera;
+            if (race == 0)
+            {
+                carrera = "Tablero de puntaje";
+            }
+
+            if (race == 1)
+            {
+                carrera = "Determinación de camino entre aldeas";
+            }
+            if (race == 2)
+            {
+                carrera = "Dibujo o renderizado de objetos";
+            }
+
+            cout << "Carrera: " << race + 1 << " |" << carrera << ": Modo ";
             switch (mode)
             {
             case 0:
@@ -99,7 +114,7 @@ int main()
             cout << endl;
             */
 
-            // Run algorithms and record execution times
+            // Ejecutar algoritmos y guardar tiempos de ejecucion
             vector<pair<string, double>> results;
 
             // Bubble Sort
@@ -156,28 +171,41 @@ int main()
     return 0;
 }
 
-vector<int> generateDataSet(int size, int mode) {
+vector<int> generateDataSet(int size, int mode)
+{
     vector<int> arr;
-    if (mode == 1) {
-        for (int i = 1; i <= size; ++i) {
+    if (mode == 1)
+    {
+        for (int i = 1; i <= size; ++i)
+        {
             arr.push_back(i);
         }
-    } else if (mode == 2) {
-        for (int i = size; i >= 1; --i) {
+    }
+    else if (mode == 2)
+    {
+        for (int i = size; i >= 1; --i)
+        {
             arr.push_back(i);
         }
-    } else if (mode == 3) {
-        for (int i = 1; i <= size; ++i) {
+    }
+    else if (mode == 3)
+    {
+        for (int i = 1; i <= size; ++i)
+        {
             arr.push_back(i);
         }
         random_shuffle(arr.begin(), arr.end());
-    } else if (mode == 4) {
-        for (int i = 1; i <= size; ++i) {
+    }
+    else if (mode == 4)
+    {
+        for (int i = 1; i <= size; ++i)
+        {
             arr.push_back(i);
         }
         random_shuffle(arr.begin(), arr.end());
-        int duplicates = rand() % (size / 2); // Generate random number of duplicates
-        for (int i = 0; i < duplicates; ++i) {
+        int duplicates = rand() % (size / 2); // Generar numeros duplicados
+        for (int i = 0; i < duplicates; ++i)
+        {
             int index = rand() % size;
             arr.push_back(arr[static_cast<size_t>(index)]);
         }
@@ -217,17 +245,15 @@ double getExecutionTime(vector<int> &arr, int algorithmOption, bool ascending)
     }
     auto end = chrono::high_resolution_clock::now();
 
-   
     chrono::duration<double> duration = end - start;
     double time_taken = duration.count();
 
-     if (!ascending)
+    if (!ascending)
     {
         // da vuelta el arreglo
         reverse(arrCopy.begin(), arrCopy.end());
     }
 
-   
     return time_taken;
 }
 
@@ -311,7 +337,7 @@ int partition(vector<int> &arr, int low, int high)
     return i + 1;
 }
 
-void quickSort(vector<int>& datos, int low, int high)
+void quickSort(vector<int> &datos, int low, int high)
 {
     stack<pair<int, int>> pila;
     pila.push(make_pair(low, high));
@@ -325,7 +351,6 @@ void quickSort(vector<int>& datos, int low, int high)
         if (lowActual >= highActual)
             continue;
 
-      
         int i = lowActual - 1;
 
         swap(datos[static_cast<size_t>(i + 1)], datos[static_cast<size_t>(highActual)]);
