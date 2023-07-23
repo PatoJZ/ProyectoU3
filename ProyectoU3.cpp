@@ -21,7 +21,10 @@ void mergeSort(vector<int> &arr, int begin, int end);
 void selectionSort(vector<int> &arr);
 void insertionSort(vector<int> &arr);
 void shellSort(vector<int> &arr);
+
+//Funcion que genera los distintos set de datos
 vector<int> generateDataSet(int size, int mode);
+
 
 // Función para obtener el tiempo de ejecución de un algoritmo de ordenamiento
 double getExecutionTime(vector<int> &arr, int algorithmOption, bool ascending);
@@ -36,106 +39,102 @@ int main()
     int numRaces = 3;
     int numSortModes = 4;
 
-   int sortOrderOption;
+    int sortOrderOption;
     cout << "Carrera de algoritmos" << endl;
     cout << "1. Ascendente" << endl;
     cout << "2. Descendente" << endl;
-    cout << "Opcion elegida: ";
+    cout << "Opción elegida: ";
     cin >> sortOrderOption;
     bool ascending = true;
     if (sortOrderOption == 2) {
         ascending = false;
     }
 
-
-    for (int race = 0; race < numRaces; ++race)
-    {
+    for (int race = 0; race < numRaces; ++race) {
         int size;
-        if (race == 1)
-        {
+        if (race == 0) {
             size = min_size1 + rand() % (max_size1 - min_size1 + 1);
-        }
-        else if (race == 2)
-        {
+        } else if (race == 1) {
             size = min_size2 + rand() % (max_size2 - min_size2 + 1);
-        }
-        else
-        {
+        } else {
             size = min_size3 + rand() % (max_size3 - min_size3 + 1);
         }
 
         cout << endl;
 
-        for (int mode = 0; mode < numSortModes; ++mode)
-        {
+        for (int mode = 0; mode < numSortModes; ++mode) {
             cout << "Carrera " << race + 1 << ": Modo ";
-            switch (mode)
-            {
-            case 0:
-                cout << "ordenado" << endl;
-                break;
-            case 1:
-                cout << "inversamente ordenado" << endl;
-                break;
-            case 2:
-                cout << "aleatorio sin repetir datos" << endl;
-                break;
-            case 3:
-                cout << "aleatorio con posibilidad de elementos duplicados" << endl;
-                break;
-            default:
-                break;
+            switch (mode) {
+                case 0:
+                    cout << "ordenado" << endl;
+                    break;
+                case 1:
+                    cout << "inversamente ordenado" << endl;
+                    break;
+                case 2:
+                    cout << "aleatorio sin repetir datos" << endl;
+                    break;
+                case 3:
+                    cout << "aleatorio con posibilidad de elementos duplicados" << endl;
+                    break;
+                default:
+                    break;
             }
+
             vector<int> arr = generateDataSet(size, mode + 1);
             /*cout << "Contenido del vector arr: ";
             for (int i = 0; i < arr.size(); ++i)
             {
                 cout << arr[i] << " ";
             }
-            */
             cout << endl;
+            */
+
             // Run algorithms and record execution times
-            unordered_map<string, double> results;
-            vector<pair<string, double>> sortedResults;
+             vector<pair<string, double>> results;
 
             // Bubble Sort
-            results["Bubble Sort"] = getExecutionTime(arr, 1, ascending);
+            results.push_back(make_pair("Bubble Sort", getExecutionTime(arr, 1, ascending)));
 
             // Heap Sort
-            results["Heap Sort"] = getExecutionTime(arr, 2, ascending);
+            results.push_back(make_pair("Heap Sort", getExecutionTime(arr, 2, ascending)));
 
             // Quick Sort
-            results["Quick Sort"] = getExecutionTime(arr, 3, ascending);
+            results.push_back(make_pair("Quick Sort", getExecutionTime(arr, 3, ascending)));
 
             // Merge Sort
-            results["Merge Sort"] = getExecutionTime(arr, 4, ascending);
+            results.push_back(make_pair("Merge Sort", getExecutionTime(arr, 4, ascending)));
 
             // Selection Sort
-            results["Selection Sort"] = getExecutionTime(arr, 5, ascending);
+            results.push_back(make_pair("Selection Sort", getExecutionTime(arr, 5, ascending)));
 
             // Insertion Sort
-            results["Insertion Sort"] = getExecutionTime(arr, 6, ascending);
+            results.push_back(make_pair("Insertion Sort", getExecutionTime(arr, 6, ascending)));
 
             // Shell Sort
-            results["Shell Sort"] = getExecutionTime(arr, 7, ascending);
+            results.push_back(make_pair("Shell Sort", getExecutionTime(arr, 7, ascending)));
 
-            // Sort the results by execution time
-            for (const auto &pair : results)
-            {
-                sortedResults.push_back(pair);
-            }
-            sort(sortedResults.begin(), sortedResults.end(), [](const auto &a, const auto &b)
-                 { return a.second < b.second; });
-
+            // Sort the results by their order of execution
             int position = 1;
-            for (const auto &pair : sortedResults)
-            {
+            for (const auto& pair : results) {
                 cout << position << ". " << pair.first << ", " << fixed << setprecision(5) << pair.second << " seconds" << endl;
                 ++position;
             }
 
+            // Find the winner algorithm based on the minimum time
+            string winnerAlgorithm;
+            double minTime = numeric_limits<double>::max();
+            for (const auto& pair : results) {
+                const string& key = pair.first;
+                double value = pair.second;
+                if (value < minTime) {
+                    minTime = value;
+                    winnerAlgorithm = key;
+                }
+            }
+
             // Print the winner
-            cout << "El ganador es: " << sortedResults[0].first << " con un tiempo de " << fixed << setprecision(5) << sortedResults[0].second << " seconds" << endl;
+            cout << "El ganador es: " << winnerAlgorithm << " con un tiempo de " << fixed << setprecision(5) << minTime << " seconds" << endl;
 
             // Clear the vector for the next mode
             arr.clear();
@@ -144,6 +143,7 @@ int main()
 
     return 0;
 }
+
 vector<int> generateDataSet(int size, int mode)
 {
     vector<int> arr;
