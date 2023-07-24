@@ -1,0 +1,8 @@
+Clonacion
+git clone https://github.com/PatoJZ/ProyectoU3
+
+Compilacion
+g++ ProyectoU3.cpp -o ProyectoU3
+
+Ejecucion
+./ProyectoU3
