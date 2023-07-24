@@ -13,7 +13,7 @@
 //Universidad De Talca
 //Rut 21357776-k
 //N° de Matricula 2022479007
-//Algoritmos y Estructuras de Datos 2023-1
+//Algoritmos y Estructuras de Datos 2023-1.
 
 using namespace std;
 
